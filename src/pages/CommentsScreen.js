@@ -30,7 +30,7 @@ function CommentsScreen() {
   }, [getPostComments]);
 
   console.log('post', post);
-  console.log('comments', comments);
+  // console.log('comments', comments);
 
   return (
     <div>
