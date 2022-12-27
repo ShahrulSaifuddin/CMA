@@ -3,4 +3,6 @@ footer {
     bottom: 0;
     background-color: $main_color;
     width: 100vw;
+    display: flex;
+    justify-content: center;
 }

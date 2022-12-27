@@ -29,11 +29,7 @@ function PostsScreen() {
   return (
     <div className="container">
       {posts.map((post) => (
-        <div
-          className="card"
-          key={post.id}
-          value={post.id}
-        >
+        <div className="card" key={post.id} value={post.id}>
           <div className="face face1">
             <div className="content">
               <h2>{post.title}</h2>
@@ -42,7 +38,9 @@ function PostsScreen() {
           <div className="face face2">
             <div className="content">
               <p>{post.body}</p>
-              <a href="#" onClick={handlePostOnClick} value={post.id}>Read More</a>
+              <a href="#" onClick={handlePostOnClick} value={post.id}>
+                Read More
+              </a>
             </div>
           </div>
         </div>

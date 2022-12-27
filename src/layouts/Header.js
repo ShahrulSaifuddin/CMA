@@ -5,7 +5,7 @@ function Header() {
     <header>
        {/* Logo / Nama */}
        {/* Search post */}
-       <h1>HEADER</h1>
+       <h1>Shahrul Saifuddin</h1>
     </header>
   )
 }

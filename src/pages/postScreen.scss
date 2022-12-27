@@ -1,5 +1,5 @@
 .container {
-    padding: 0 13px;
+    padding: 0px 13px 105px 13px;
     height: 100vh;
     position: fixed;
     overflow: auto;
@@ -97,6 +97,11 @@
 h2 {
     // cursor: pointer;
     width: fit-content;
+}
+
+button {
+    height: 30px;
+    margin-bottom: 30px;
 }
 
 ::-webkit-scrollbar {

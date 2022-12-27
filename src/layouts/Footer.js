@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <footer>
-        Shahrul @ {new Date().getFullYear()}
+        Shahrul Saifuddin @ {new Date().getDate()}/{new Date().getMonth() + 1}/{new Date().getFullYear()}
     </footer>
   )
 }

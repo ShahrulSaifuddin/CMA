@@ -6,7 +6,7 @@ function CommentsScreen() {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [filteredComments, setFilteredComments] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const routeMatch = useRouteMatch("/post/:id");
 
   console.log("routeMatch", routeMatch);
@@ -32,35 +32,42 @@ function CommentsScreen() {
   }, [getPostComments]);
 
   useEffect(() => {
-    setFilteredComments(comments.filter((comment) => {
-      return (
-        comment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        comment.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        comment.body.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }));
+    setFilteredComments(
+      comments.filter((comment) => {
+        return (
+          comment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          comment.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          comment.body.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      })
+    );
   }, [searchTerm, comments]);
 
   console.log("post", post);
   // console.log('comments', comments);
 
   return (
-    <div>
-      <h1>{post?.title}</h1>
-      <input
-        type="text"
-        placeholder="Search comments"
-        value={searchTerm}
-        onChange={(event) => setSearchTerm(event.target.value)}
-      />
+    <div className="containerComment">
+      <div className="header">
+        <h1>{post?.title}</h1>
+        <input
+          type="text"
+          placeholder="Search comments"
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
+        />
+      </div>
+
+      <div className="cardComment">
 
       {filteredComments.map((comment) => (
-        <div key={comment.id}>
+        <div className="comment" key={comment.id}>
           <p>Body: {comment.body}</p>
           <p>Name: {comment.name}</p>
           <p>Email: {comment.email}</p>
         </div>
       ))}
+      </div>
     </div>
   );
 }
