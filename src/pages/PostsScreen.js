@@ -4,6 +4,7 @@ import "./postScreen.scss";
 
 function PostsScreen() {
   const [posts, setPosts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true)
   const history = useHistory();
 
   useEffect(() => {

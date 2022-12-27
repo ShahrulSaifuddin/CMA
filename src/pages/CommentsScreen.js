@@ -8,6 +8,7 @@ function CommentsScreen() {
   const [filteredComments, setFilteredComments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const routeMatch = useRouteMatch("/post/:id");
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log("routeMatch", routeMatch);
 
@@ -22,7 +23,7 @@ function CommentsScreen() {
         `https://jsonplaceholder.typicode.com/comments?postId=${post_id}`
       ).then((res) => res.json()),
     ]);
-
+    setIsLoading(false);
     setPost(responses[0]);
     setComments(responses[1]);
   }, []);
@@ -47,28 +48,34 @@ function CommentsScreen() {
   // console.log('comments', comments);
 
   return (
-    <div className="containerComment">
-      <div className="header">
-        <h1>{post?.title}</h1>
-        <input
-          type="text"
-          placeholder="Search comments"
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
-      </div>
+    <>
+      {" "}
+      {isLoading ? (
+        <h1>LOADING</h1>
+      ) : (
+        <div className="containerComment">
+          <div className="header">
+            <h1>{post?.title}</h1>
+            <input
+              type="text"
+              placeholder="Search comments"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+          </div>
 
-      <div className="cardComment">
-
-      {filteredComments.map((comment) => (
-        <div className="comment" key={comment.id}>
-          <p>Body: {comment.body}</p>
-          <p>Name: {comment.name}</p>
-          <p>Email: {comment.email}</p>
+          <div className="cardComment">
+            {filteredComments.map((comment) => (
+              <div className="comment" key={comment.id}>
+                <p>Body: {comment.body}</p>
+                <p>Name: {comment.name}</p>
+                <p>Email: {comment.email}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
