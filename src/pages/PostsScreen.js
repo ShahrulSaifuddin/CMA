@@ -20,7 +20,7 @@ function PostsScreen() {
   }, []);
 
   const handlePostOnClick = (e) => {
-    // console.log(e.currentTarget);
+    e.preventDefault()
     const id = e.currentTarget.getAttribute("value");
     console.log(id);
 

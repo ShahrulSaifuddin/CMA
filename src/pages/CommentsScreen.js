@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useHistory } from "react-router-dom";
 import Loading from "../layouts/Loading";
 import "./commentScreen.scss";
 
@@ -10,6 +10,7 @@ function CommentsScreen() {
   const [searchTerm, setSearchTerm] = useState("");
   const routeMatch = useRouteMatch("/post/:id");
   const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
 
   console.log("routeMatch", routeMatch);
 
@@ -45,26 +46,33 @@ function CommentsScreen() {
     );
   }, [searchTerm, comments]);
 
+  const handlePostOnClick = (e) => {
+    e.preventDefault();
+    history.push(`/post/`);
+  };
+
   console.log("post", post);
-  // console.log('comments', comments);
 
   return (
     <>
       {" "}
       {isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <div className="containerComment">
+          <div className="btn-container">
+            <button class="button">Main Menu</button>
+          </div>
           <div className="header">
             <h1>{post?.title}</h1>
-            <input
+            <input 
+              className="search"
               type="text"
               placeholder="Search comments"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             />
           </div>
-
           <div className="cardComment">
             {filteredComments.map((comment) => (
               <div className="comment" key={comment.id}>
@@ -73,6 +81,9 @@ function CommentsScreen() {
                 <p>Email: {comment.email}</p>
               </div>
             ))}
+          </div>
+          <div className="btn-container">
+            <button class="button">Main Menu</button>
           </div>
         </div>
       )}
