@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useRouteMatch } from "react-router-dom";
+import Loading from "../layouts/Loading";
 import "./commentScreen.scss";
 
 function CommentsScreen() {
@@ -51,7 +52,7 @@ function CommentsScreen() {
     <>
       {" "}
       {isLoading ? (
-        <h1>LOADING</h1>
+        <Loading/>
       ) : (
         <div className="containerComment">
           <div className="header">

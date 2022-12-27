@@ -86,6 +86,19 @@
     color: #333;
     padding: 5px;
     border: 1px solid #333;
+    border-radius: 8px;
+}
+
+@keyframes pulse {
+    from {
+        box-shadow: 
+            0 0 25px #640323,
+            0 0 50px #ff0057;
+    }
+}
+
+.container .card .face.face2 .content a:focus {
+    animation: pulse 0.5s ease-in-out;
 }
 
 .container .card:hover .face.face2 .content a {
