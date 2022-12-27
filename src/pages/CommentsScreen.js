@@ -61,7 +61,7 @@ function CommentsScreen() {
       ) : (
         <div className="containerComment">
           <div className="btn-container">
-            <button class="button">Main Menu</button>
+            <button class="button" onClick={handlePostOnClick}>Main Menu</button>
           </div>
           <div className="header">
             <h1>{post?.title}</h1>
@@ -83,7 +83,7 @@ function CommentsScreen() {
             ))}
           </div>
           <div className="btn-container">
-            <button class="button">Main Menu</button>
+            <button class="button" onClick={handlePostOnClick}>Main Menu</button>
           </div>
         </div>
       )}
