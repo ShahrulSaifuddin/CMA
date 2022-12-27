@@ -3,14 +3,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./layouts/index";
 import Routes from "./routes";
 
-// import "./styles/index.scss";
+import "./styles/index.scss";
 
 function App() {
   return (
     <Router>
-      {/* <Layout> */}
+      <Layout>
         <Routes />
-      {/* </Layout> */}
+      </Layout>
     </Router>
   );
 }

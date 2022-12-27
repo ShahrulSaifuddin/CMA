@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import "./postScreen.scss";
 
 function PostsScreen() {
   const [posts, setPosts] = useState([]);
@@ -19,19 +20,31 @@ function PostsScreen() {
 
   const handlePostOnClick = (e) => {
     // console.log(e.currentTarget);
-    const id = e.currentTarget.getAttribute('value');
+    const id = e.currentTarget.getAttribute("value");
     console.log(id);
 
     history.push(`/post/${id}`);
-
   };
 
   return (
-    <div>
+    <div className="container">
       {posts.map((post) => (
-        <div key={post.id} value={post.id} onClick={handlePostOnClick}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
+        <div
+          className="card"
+          key={post.id}
+          value={post.id}
+        >
+          <div className="face face1">
+            <div className="content">
+              <h2>{post.title}</h2>
+            </div>
+          </div>
+          <div className="face face2">
+            <div className="content">
+              <p>{post.body}</p>
+              <a href="#" onClick={handlePostOnClick} value={post.id}>Read More</a>
+            </div>
+          </div>
         </div>
       ))}
     </div>

@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useRouteMatch } from "react-router-dom";
+import "./commentScreen.scss";
 
 function CommentsScreen() {
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [filteredComments, setFilteredComments] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const routeMatch = useRouteMatch("/post/:id");
 
   console.log("routeMatch", routeMatch);
@@ -21,25 +24,40 @@ function CommentsScreen() {
     ]);
 
     setPost(responses[0]);
-    setComments(responses[1])
-    
+    setComments(responses[1]);
   }, []);
 
   useEffect(() => {
     getPostComments();
   }, [getPostComments]);
 
-  console.log('post', post);
+  useEffect(() => {
+    setFilteredComments(comments.filter((comment) => {
+      return (
+        comment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        comment.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        comment.body.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }));
+  }, [searchTerm, comments]);
+
+  console.log("post", post);
   // console.log('comments', comments);
 
   return (
     <div>
       <h1>{post?.title}</h1>
-      
-      {comments.map((comment) => (
+      <input
+        type="text"
+        placeholder="Search comments"
+        value={searchTerm}
+        onChange={(event) => setSearchTerm(event.target.value)}
+      />
+
+      {filteredComments.map((comment) => (
         <div key={comment.id}>
-          <p>{comment.body}</p>
-          <p>By {comment.name}</p>
+          <p>Body: {comment.body}</p>
+          <p>Name: {comment.name}</p>
           <p>Email: {comment.email}</p>
         </div>
       ))}
